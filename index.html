@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+	<title>Calcuradora IMC</title>
+	<style>
+		body{
+			display: flex;
+			align-items: center;
+			justify-content: center;	
+			height: 100vh;
+			font-family: Arial;
+			background: #ccc
+		}
+		div{
+			display: flex;
+			flex-direction: column;
+			width:400px;
+			border:1px solid #fafafa;
+			padding: 15px 25px;
+			border-radius: 10px;
+			background: #fafafa
+		}
+		h1{
+			text-align: center
+		}
+		input{
+			height:25px;
+			margin-bottom:10px;
+			padding:0 5px;
+		}
+		button{
+			height: 50px;
+			font-size: 15px;
+			text-transform: uppercase;
+			font-weight: 700;
+			margin: 15px 0;
+			border: 0;
+			border-radius: 10px;
+			background: #b23216;
+			color: #fff;
+			cursor: pointer
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h1>Calculadora de IMC</h1>
+	
+		<label for="altura">Digite sua altura:</label>
+		<input type="number" id="altura">
+
+		<label for="peso">Digite seu peso:</label>
+		<input type="number"id="peso">
+		
+		<button id="calcular">Calcular</button>
+	</div>
+
+	<script>
+
+		var calcular = document.getElementById("calcular");
+		
+		calcular.addEventListener("click", () => {
+
+			//obter altura
+			var altura = +document.getElementById("altura").value;
+
+			//obter peso
+			var peso = document.getElementById("peso").value;
+
+			//calcular o imc utilizando a altura e o peso informado
+			var imc = peso / (altura * altura);
+
+			//com o imc calculado, encontre a situação na tabela. se o resultado 
+			var situacao = "";
+
+			//Abaixo de 17 kg/m2 muito abaixo do peso
+			if (imc < 17)
+				situacao = "Muito abaixo do peso";
+			//Abaixo de 18,50 a 17 kg/m2 abaixo do peso
+			else if (imc >=17 && imc <= 18.50)
+				situacao = "Abaixo do peso";
+			//Entre 18,50 e 24,99 kg/m2 peso normal
+			else if (imc >= 18.50 && imc <= 24.99)
+				situacao = "Peso normal";
+			//Entre 25,00 e 29,99 kg/m2 sobrepeso
+			else if (imc >= 25 && imc <= 29.99)
+				situacao = "Sobrepeso";
+			//Entre 30,00 e 34,99 kg/m2 obesidade grau I
+			else if (imc >= 30 && imc <= 34.99)
+				situacao = "Obesidade grau I";
+			//Entre 35,00 e 39,99 kg/m2 obesidade grau II
+			else if (imc >= 35 && imc <= 39.99)
+				situacao = "Obesidade grau II";
+			//Acima de 40 kg/m2 obesidade grau III
+			else if (imc >= 40)
+				situacao = "Obesidade grau III";
+
+			//exibir situação
+			alert(situacao);
+		});
+	</script>
+</body>
